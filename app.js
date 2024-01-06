@@ -1,8 +1,11 @@
 const express = require('express');
+const userRoutes = require('./src/router/user-routes')
 
 require('dotenv').config();
 
 const app = express();
+
+app.use('/api/v1' , userRoutes)
 
 app.get('/api' , (req , res) => {
     res.status(200).send({message : 'Application is running....'});
