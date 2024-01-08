@@ -8,8 +8,17 @@ const userController = require('../controller/user-controller');
  */
 router.get('/users' , userController.getAllUsers);
 
+/**
+ * @description Create a New User
+ * @method POST /user
+ */
 router.post('/user' , userController.createUser);
 
+
+/**
+ * @description Get a User by ID
+ * @method GET /user/:id
+ */
 router.get('/user/:id' , userController.getUserByID);
 
 module.exports = router;
