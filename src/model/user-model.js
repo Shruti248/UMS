@@ -98,6 +98,14 @@ let sql = `
         return db.execute(sql);
 
     }
+
+    static findByIdAndDelete(id){
+        let sql = `
+            DELETE FROM user WHERE id = ${id};
+        `;
+
+        return db.execute(sql);
+    }
 }
 
 

@@ -23,12 +23,15 @@ router.get('/user/:id', userController.getUserByID);
 
 /**
  * @description Update a User by ID
- * @method GET /user/:id
+ * @method PUT /user/:id
  */
 router.put('/user/:id', userController.editTheUser);
 
-
-
+/**
+ * @description Delete a User by ID
+ * @method DELETE /user/:id
+ */
+router.delete('/user/:id' , userController.deleteAUser);
 
 
 module.exports = router;
