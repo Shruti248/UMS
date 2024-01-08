@@ -15,6 +15,10 @@
 // module.exports = user;
 
 const db = require('../../config/db_config')
+const moment = require('moment-timezone');
+
+// Get the current time in Indian Standard Time (IST)
+const nowIST = moment().tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss');
 
 class User {
     constructor(role , firstName , lastName , email , password , profilePic , contactNumber) {
@@ -25,8 +29,8 @@ class User {
         this.password = password;
         this.profilePic = profilePic;
         this.contactNumber = contactNumber;
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
+        this.createdAt = nowIST; 
+        this.updatedAt = nowIST;
     }
 
     // save to database
@@ -50,8 +54,8 @@ let sql = `
         '${this.password}',
         '${this.profilePic}',
         '${this.contactNumber}',
-        '${this.createdAt.toISOString().slice(0, 19).replace('T', ' ')}',
-        '${this.updatedAt.toISOString().slice(0, 19).replace('T', ' ')}'
+        '${nowIST}',
+        '${nowIST}'
     )
 `;
 
@@ -76,6 +80,23 @@ let sql = `
         let sql = `SELECT * from user WHERE id = ${id};`
 
         return db.execute(sql);
+    }
+
+    static findByIdAndUpdate(id , data){
+        let sql = `UPDATE user SET 
+        role = '${data.role}',
+        firstName = '${data.firstName}',
+        lastName = '${data.lastName}',
+        email = '${data.email}',
+        password = '${data.password}',
+        profilePic = '${data.profilePic}',
+        contactNumber = '${data.contactNumber}',
+        createdAt = '${nowIST}',
+        updatedAt = '${nowIST}'
+        WHERE ID = "${id}"`;
+    
+        return db.execute(sql);
+
     }
 }
 

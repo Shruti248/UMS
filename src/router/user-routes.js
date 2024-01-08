@@ -6,19 +6,29 @@ const userController = require('../controller/user-controller');
  * @description Get All Users
  * @method GET /users
  */
-router.get('/users' , userController.getAllUsers);
+router.get('/users', userController.getAllUsers);
 
 /**
  * @description Create a New User
  * @method POST /user
  */
-router.post('/user' , userController.createUser);
+router.post('/user', userController.createUser);
 
 
 /**
  * @description Get a User by ID
  * @method GET /user/:id
  */
-router.get('/user/:id' , userController.getUserByID);
+router.get('/user/:id', userController.getUserByID);
+
+/**
+ * @description Update a User by ID
+ * @method GET /user/:id
+ */
+router.put('/user/:id', userController.editTheUser);
+
+
+
+
 
 module.exports = router;
