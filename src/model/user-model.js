@@ -106,6 +106,14 @@ let sql = `
 
         return db.execute(sql);
     }
+
+    static findOneByEmail(email){
+        let sql = `
+        SELECT * FROM user WHERE email = ?;
+        `
+
+        return db.execute(sql , [email]);
+    }
 }
 
 

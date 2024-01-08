@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const userRoutes = require('./src/router/user-routes')
+const authRoutes = require('./src/router/auth-routes')
 require('./config/db_config')
 
 const app = express();
@@ -8,7 +9,10 @@ const app = express();
 // Middleware 
 app.use(express.json());
 
-app.use('/api/v1' , userRoutes)
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
+
+app.use('/api/v1' , userRoutes , authRoutes)
 
 // app.get('/api' , (req , res) => {
 //     res.status(200).send({message : 'Application is running....'});
