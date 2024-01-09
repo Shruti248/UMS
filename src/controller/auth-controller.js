@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../model/user-model');
+const validateRegisterInput = require('../validations/register');
 
 exports.login = async (req, res, next) => {
     const { email, password } = req.body;
@@ -48,6 +49,12 @@ exports.register = async (req, res, next) => {
             return res.status(400).json({ message: 'All fields are required.' });
         }
 
+        const { errors, isValid } = validateRegisterInput(req.body);
+        // Check to make sure nobody has already registered with a duplicate email
+        if (!isValid) {
+            return res.status(400).json({ message: "Failed", errors: errors });
+        }
+    
         // Check for existing user 
         let existingUser = await User.findOneByEmail(email);
 
