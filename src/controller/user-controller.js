@@ -20,6 +20,17 @@ exports.createUser = async (req, res, next) => {
 
         let { role, firstName, lastName, email, password, profilePic, contactNumber } = req.body;
 
+
+        // Check for existing user 
+        let existingUser = await User.findOneByEmail(email);
+
+        // 409 Conflict
+        if (existingUser[0][0]) {
+            return res.status(409).json({
+                message: 'User already exists'
+            });
+        }
+
         // Creating the object for the user 
         let user = new User(role, firstName, lastName, email, password, profilePic, contactNumber);
 
@@ -85,15 +96,15 @@ exports.editTheUser = async (req, res, next) => {
     }
 }
 
-exports.deleteAUser = async(req , res , next) => {
-    try{
+exports.deleteAUser = async (req, res, next) => {
+    try {
         const userId = req.params.id;
 
         const deletedUser = await User.findByIdAndDelete(userId);
 
         res.status(200).json({ message: 'User deleted successfully', data: deletedUser });
-        
-    }catch(err){
+
+    } catch (err) {
         console.log(err);
 
         next(err);
