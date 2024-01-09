@@ -9,7 +9,7 @@ const userController = require('../controller/user-controller');
 router.get('/users', userController.getAllUsers);
 
 /**
- * @description Create a New User
+ * @description Create a New User (Only admin can)
  * @method POST /user
  */
 router.post('/user', userController.createUser);
