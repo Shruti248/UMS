@@ -1,4 +1,5 @@
 const User = require('../model/user-model');
+const getCurrentUser = require('../middleware/auth-middleware')
 
 exports.getAllUsers = async (req, res, next) => {
 
