@@ -14,7 +14,7 @@
 
 // module.exports = user;
 
-const db = require('../../config/db_config')
+const db = require('../../config/db_connection')
 const moment = require('moment-timezone');
 
 // Get the current time in Indian Standard Time (IST)

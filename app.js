@@ -2,9 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const userRoutes = require('./src/router/user-routes')
 const authRoutes = require('./src/router/auth-routes')
-require('./config/db_config')
+require('./config/db_connection')
 const cookieParser = require("cookie-parser")
-
+require('./config/db.js')
 const app = express();
 
 // Middleware 
