@@ -18,7 +18,7 @@ exports.getAllUsers = async (req, res, next) => {
 exports.createUser = async (req, res, next) => {
     try {
 
-        let { role, firstName, lastName, email, password, profilePic, contactNumber } = req.body;
+        let { role, firstName, lastName, email, password, contactNumber } = req.body;
 
 
         // Check for existing user 
@@ -30,6 +30,8 @@ exports.createUser = async (req, res, next) => {
                 message: 'User already exists'
             });
         }
+
+        let profilePic = req.file.filename; 
 
         // Creating the object for the user 
         let user = new User(role, firstName, lastName, email, password, profilePic, contactNumber);
