@@ -5,11 +5,14 @@ const authRoutes = require('./src/router/auth-routes')
 require('./config/db_connection')
 const cookieParser = require("cookie-parser")
 require('./config/db.js')
+const cors = require('cors');
+
 const app = express();
 
 // Middleware 
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));

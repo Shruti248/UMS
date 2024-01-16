@@ -22,7 +22,7 @@ exports.login = async (req, res, next) => {
         // Validate the password
         const validPassword = await bcrypt.compare(password, user[0][0].password);
 
-        if (!validPassword) {
+        if (!validPassword) { 
             return res.status(401).json({ message: 'Invalid credentials.' });
         }
 
@@ -49,11 +49,11 @@ exports.register = async (req, res, next) => {
             return res.status(400).json({ message: 'All fields are required.' });
         }
 
-        const { errors, isValid } = validateRegisterInput(req.body);
-        // Check to make sure nobody has already registered with a duplicate email
-        if (!isValid) {
-            return res.status(400).json({ message: "Failed", errors: errors });
-        }
+        // const { errors, isValid } = validateRegisterInput(req.body);
+        // // Check to make sure nobody has already registered with a duplicate email
+        // if (!isValid) {
+        //     return res.status(400).json({ message: "Failed", errors: errors });
+        // }
     
         // Check for existing user 
         let existingUser = await User.findOneByEmail(email);
@@ -87,7 +87,7 @@ exports.register = async (req, res, next) => {
                 maxAge: maxAge * 1000, // Max age in milliseconds
             });
 
-            res.status(201).json({ message: 'Registration Successful.', data: user });
+            res.status(200).json({ message: 'Registration Successful.', data: user[0][0] });
         }
 
     } catch (err) {

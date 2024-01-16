@@ -6,7 +6,7 @@ exports.getAllUsers = async (req, res, next) => {
     try {
         const [users, _] = await User.findAll();
 
-        res.status(200).json({ count: users.length, users });
+        res.status(200).json({ count: users.length, data : users });
     } catch (err) {
         console.log(err);
 

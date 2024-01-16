@@ -51,4 +51,4 @@ async function query(){
 
 }
 
-query();
+// query();
