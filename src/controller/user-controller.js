@@ -1,5 +1,6 @@
 const User = require('../model/user-model');
 const getCurrentUser = require('../middleware/auth-middleware')
+const bcrypt = require('bcrypt')
 
 exports.getAllUsers = async (req, res, next) => {
 
@@ -32,9 +33,10 @@ exports.createUser = async (req, res, next) => {
         }
 
         let profilePic = req.file.filename; 
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         // Creating the object for the user 
-        let user = new User(role, firstName, lastName, email, password, profilePic, contactNumber);
+        let user = new User(role, firstName, lastName, email, hashedPassword, profilePic, contactNumber);
 
         user = await user.save();
 

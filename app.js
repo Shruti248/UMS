@@ -16,9 +16,11 @@ app.use(cors());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+app.use('/uploads', express.static('uploads'));
 
 app.use('/api/v1' , userRoutes);
 app.use('/api/v1', authRoutes);
+
 
 // app.get('/api' , (req , res) => {
 //     res.status(200).send({message : 'Application is running....'});
