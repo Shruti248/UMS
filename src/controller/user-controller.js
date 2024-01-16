@@ -6,7 +6,7 @@ exports.getAllUsers = async (req, res, next) => {
     try {
         const [users, _] = await User.findAll();
 
-        res.status(200).json({ count: users.length, data : users });
+        res.status(200).json({ count: users.length, data : users.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))});
     } catch (err) {
         console.log(err);
 
