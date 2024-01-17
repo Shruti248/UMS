@@ -42,12 +42,14 @@ exports.login = async (req, res, next) => {
 
 exports.register = async (req, res, next) => {
     try {
-        const { firstName, lastName, email, password, profilePic, contactNumber } = req.body;
+        const { firstName, lastName, email, password, contactNumber } = req.body;
         const maxAge = 24 * 60 * 60;
 
         if (!firstName || !lastName || !email || !password || !contactNumber) {
             return res.status(400).json({ message: 'All fields are required.' });
         }
+
+        let profilePic = req.file.filename;
 
         // const { errors, isValid } = validateRegisterInput(req.body);
         // // Check to make sure nobody has already registered with a duplicate email
