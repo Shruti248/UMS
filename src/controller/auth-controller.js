@@ -8,9 +8,9 @@ exports.login = async (req, res, next) => {
     const maxAge = 24 * 60 * 60;
 
     try {
-        if (!email || !password) {
-            return res.status(400).json({ message: 'Email and password are required.' });
-        }
+        // if (!email || !password) {
+        //     return res.status(400).json({ message: 'Email and password are required.' });
+        // }
 
         // Find user by email in the database
         const user = await User.findOneByEmail(email);
@@ -45,9 +45,9 @@ exports.register = async (req, res, next) => {
         const { firstName, lastName, email, password, contactNumber } = req.body;
         const maxAge = 24 * 60 * 60;
 
-        if (!firstName || !lastName || !email || !password || !contactNumber) {
-            return res.status(400).json({ message: 'All fields are required.' });
-        }
+        // if (!firstName || !lastName || !email || !password || !contactNumber) {
+        //     return res.status(400).json({ message: 'All fields are required.' });
+        // }
 
         let profilePic = req.file.filename;
 

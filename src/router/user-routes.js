@@ -22,9 +22,9 @@ const upload = multer({ storage: storage })
  * @description Get All Users
  * @method GET /users
  */
-// router.get('/users',userAuth, userController.getAllUsers);
+router.get('/users',userAuth, userController.getAllUsers);
 // removed auth Only for testing 
-router.get('/users', userController.getAllUsers);
+// router.get('/users', userController.getAllUsers);
 
 /**
  * @description Create a New User (Only admin can)

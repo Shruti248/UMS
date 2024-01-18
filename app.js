@@ -12,7 +12,11 @@ const app = express();
 // Middleware 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:8200", "http://127.0.0.1:8200"],
+    credentials: true,
+}));
+
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
